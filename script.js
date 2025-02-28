@@ -7,13 +7,18 @@ document.getElementById("search-btn").addEventListener("click", function() {
     }
 });
 
-document.getElementById("toggle-btn").addEventListener("click", function() {
-    const hiddenEvents = document.querySelectorAll(".hidden");
-    const toggleBtn = document.getElementById("toggle-btn");
+// Toggle for "New Events"
+document.getElementById("toggle-new-events").addEventListener("click", function() {
+    const hiddenEvents = document.querySelectorAll(".events-container .hidden");
+    hiddenEvents.forEach(event => event.classList.toggle("show"));
 
-    hiddenEvents.forEach(event => {
-        event.classList.toggle("show");
-    });
+    this.textContent = this.textContent === "View More" ? "View Less" : "View More";
+});
 
-    toggleBtn.textContent = toggleBtn.textContent === "View More" ? "View Less" : "View More";
+// Toggle for "Upcoming Events"
+document.getElementById("toggle-upcoming-events").addEventListener("click", function() {
+    const hiddenEvents = document.querySelectorAll(".heading .hidden");
+    hiddenEvents.forEach(event => event.classList.toggle("show"));
+
+    this.textContent = this.textContent === "View More" ? "View Less" : "View More";
 });

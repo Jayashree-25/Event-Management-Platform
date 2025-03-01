@@ -1,3 +1,25 @@
+window.addEventListener("load", function () {
+    const navEntries = performance.getEntriesByType("navigation");
+    const navType = navEntries.length > 0 ? navEntries[0].type : "navigate";
+
+    if (navType === "back_forward") {
+       
+        document.getElementById("intro-screen").style.display = "none";
+        document.getElementById("main-content").classList.remove("hidden");
+    } else {
+       
+        setTimeout(() => {
+            const introScreen = document.getElementById("intro-screen");
+            introScreen.classList.add("fade-out");
+            setTimeout(() => {
+                introScreen.style.display = "none";
+                document.getElementById("main-content").classList.remove("hidden");
+            }, 1000);
+        }, 4000);
+    }
+});
+
+
 document.getElementById("search-btn").addEventListener("click", function () {
     let query = document.getElementById("search").value.trim();
     if (query) {
@@ -6,12 +28,3 @@ document.getElementById("search-btn").addEventListener("click", function () {
         alert("Please enter a search term.");
     }
 });
-
-setTimeout(() => {
-    const introScreen = document.getElementById("intro-screen");
-    introScreen.classList.add("fade-out"); // Start fade-out + slide-up
-    setTimeout(() => {
-        introScreen.style.display = "none"; // Hide after animation
-        document.getElementById("main-content").classList.remove("hidden");
-    }, 1000); // Matches fade-out duration
-}, 4000);

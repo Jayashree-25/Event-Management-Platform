@@ -14,4 +14,4 @@ setTimeout(() => {
         introScreen.style.display = "none"; // Hide after animation
         document.getElementById("main-content").classList.remove("hidden");
     }, 1000); // Matches fade-out duration
-}, 4000);
+}, 1000);

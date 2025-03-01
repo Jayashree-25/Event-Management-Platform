@@ -92,7 +92,6 @@
             let events = JSON.parse(localStorage.getItem('events')) || [];
             events.push(eventData);
             localStorage.setItem('events', JSON.stringify(events));
-
             window.location.href = 'events.html';
         });
     </script>

@@ -5,151 +5,219 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Listings</title>
-    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+
+    <style>
+        /* Intro Animation */
+        .intro-screen {
+            animation: fadeInScale 1.5s ease-in-out;
+        }
+
+        /* Fade-out + Slide-up */
+        .fade-out {
+            animation: fadeOutSlideUp 1s ease-out forwards;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeOutSlideUp {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            to {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+        }
+    </style>
 </head>
 
-<body>
-    <div class="head">
-        <img src="https://www.charleycreekinn.com/resourcefiles/mainimages/honeywell-center-at-wabash-indiana.jpg"
-            alt="Event Banner">
+<body class="bg-gray-100">
+
+    <!-- 🔥 Cool Animated Intro Screen -->
+    <div id="intro-screen"
+        class="fixed inset-0 flex flex-col items-center justify-center bg-black text-white z-50 intro-screen">
+        <h1 class="text-5xl font-bold animate-pulse">Welcome to Event Listings</h1>
+        <p class="text-lg mt-2 opacity-80">Find the most exciting events happening near you!</p>
     </div>
 
-    <div class="input-container">
-        <input type="text" id="search" placeholder="Find the event you're interested in..">
-        <button id="search-btn">Search</button>
-    </div>
+    <!-- Main Content (Initially Hidden) -->
+    <div id="main-content" class="hidden">
+        <!-- 🌟 Header with Banner & Text -->
+        <div class="relative w-full h-48">
+            <img class="w-full h-full object-cover"
+                src="https://www.charleycreekinn.com/resourcefiles/mainimages/honeywell-center-at-wabash-indiana.jpg"
+                alt="Event Banner">
 
-    <div class="events-container">
-        <h2 class="section-title">NEW EVENTS</h2>
-
-        <div class="events-grid">
-            <!-- First Event Card -->
-            <div class="event-card">
-                <div class="event-image"
-                    style="background-image: url('https://assets.gqindia.com/photos/63a56793176de641bea6529e/16:9/w_2560%2Cc_limit/Marathon-training.jpeg');">
-                </div>
-                <div class="event-details">
-                    <h3>Urban Marathon</h3>
-                    <p class="date">📅 March 10 | 08:00 AM</p>
-                    <p class="location">📍 Infocity Area, BBSR</p>
-                </div>
-            </div>
-
-            <!-- Second Event Card -->
-            <div class="event-card">
-                <div class="event-image"
-                    style="background-image: url('https://themelodyeventcenter.com/wp-content/uploads/2020/02/Copy-of-Screenshot-73.jpg');">
-                </div>
-                <div class="event-details">
-                    <h3>Melody</h3>
-                    <p class="date">📅 March 15 | 07:00 PM</p>
-                    <p class="location">📍 SOA Auditorium, ITER</p>
-                </div>
-            </div>
-            <!-- Third Event Card -->
-            <div class="event-card">
-                <div class="event-image"
-                    style="background-image: url('https://th.bing.com/th/id/OIP.kTMeJOf_CRsUV_SeraSObQAAAA?rs=1&pid=ImgDetMain');">
-                </div>
-                <div class="event-details">
-                    <h3>Badminton</h3>
-                    <p class="date">📅 March 18 | 08:00 AM</p>
-                    <p class="location">📍 Sports Complex, ITER</p>
-                </div>
-            </div>
-
-            <!-- Hidden Event Cards -->
-            <div class="event-card hidden">
-                <div class="event-image"
-                    style="background-image: url('https://static.vecteezy.com/system/resources/previews/040/170/488/non_2x/ai-generated-close-up-the-striker-shows-off-dribbling-skills-in-stadium-generative-ai-photo.jpg');">
-                </div>
-                <div class="event-details">
-                    <h3>Football</h3>
-                    <p class="date">📅 March 20 | 08:00 AM</p>
-                    <p class="location">📍 Football Ground, ITER</p>
-                </div>
-            </div>
-
-            <div class="event-card hidden">
-                <div class="event-image"
-                    style="background-image: url('https://curlytales.com/wp-content/uploads/2019/11/shekaan.jpg');">
-                </div>
-                <div class="event-details">
-                    <h3>Food Festival</h3>
-                    <p class="date">📅 April 10 | 12:00 PM</p>
-                    <p class="location">📍 Near Cafeteria, ITER</p>
-                </div>
+            <!-- Overlay Text -->
+            <div
+                class="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-50 text-white text-center px-4">
+                <h1 class="text-4xl font-bold">Discover Amazing Events</h1>
+                <p class="text-lg mt-2">Explore and register for events happening near you!</p>
             </div>
         </div>
 
-        <!-- View More / View Less Button -->
-        <button id="toggle-new-events">View More</button>
-    </div>
 
-    <div class="heading">
-        <h1 style="font-family: Book Antiqua;">UPCOMING <span class="pink-bold">2025 BANGERS</span></h1>
+        <!-- Search Bar -->
+        <div class="flex justify-center mt-6">
+            <div class="flex w-1/2 bg-white border border-gray-300 rounded-lg shadow-md overflow-hidden">
+                <input type="text" id="search" class="flex-grow px-4 py-2 focus:outline-none"
+                    placeholder="Find the event you're interested in..">
+                <button id="search-btn"
+                    class="bg-blue-600 text-white px-4 py-2 hover:bg-blue-700 transition">Search</button>
+            </div>
+        </div>
 
-        <div class="events-grid">
-            <!-- First Event Card -->
-            <div class="event-card">
-                <div class="event-image"
-                    style="background-image: url('https://tse4.mm.bing.net/th?id=OIP.zB4ujs-Qn4iEElXxC8ZyHwHaEK&pid=Api&P=0&h=180');">
-                </div>
-                <div class="event-details">
-                    <h3>Dance Arena</h3>
-                    <p class="date">📅 March 10 | 7:00 PM</p>
-                    <p class="location">📍 SOA Auditorium, ITER</p>
-                </div>
-            </div>
+        <!-- Events Section -->
+        <div class="container mx-auto mt-10 px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">NEW EVENTS</h2>
 
-            <!-- Second Event Card -->
-            <div class="event-card">
-                <div class="event-image"
-                    style="background-image: url('https://tse1.mm.bing.net/th?id=OIP.9UUVpcIJaV7XOAQWP8wDmQHaE8&pid=Api&P=0&h=180');">
+            <!-- Event Cards Container -->
+            <div class="flex flex-wrap justify-center gap-6">
+                <!-- Event Cards -->
+                <div class="w-80 bg-white border border-gray-300 rounded-lg shadow-lg overflow-hidden">
+                    <img class="w-full h-40 object-cover"
+                        src="https://tse4.mm.bing.net/th?id=OIP.zB4ujs-Qn4iEElXxC8ZyHwHaEK&pid=Api&P=0&h=180"
+                        alt="Event Image">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Dance Arena</h3>
+                        <p class="text-sm text-gray-500 mt-1">March 10, 2025 • SOA Auditorium, ITER</p>
+                        <a href="#"
+                            class="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Register</a>
+                    </div>
                 </div>
-                <div class="event-details">
-                    <h3>Drama Theater</h3>
-                    <p class="date">📅 March 12 |  8:00 PM</p>
-                    <p class="location">📍SOA Auditorium, ITER</p>
-                </div>
-            </div>
-            <!-- Third Event Card -->
-            <div class="event-card">
-                <div class="event-image"
-                    style="background-image: url('https://i.pinimg.com/originals/bc/16/8f/bc168f200cb1443ba30a523419d065d7.jpg');">
-                </div>
-                <div class="event-details">
-                    <h3>Treasure Hunt</h3>
-                    <p class="date">📅 April 14 | 10:00 AM</p>
-                    <p class="location">📍IIT, BBSR</p>
-                </div>
-            </div>
-            <!-- Hidden Event Cards -->
-            <div class="event-card hidden">
-                <div class="event-image"
-                    style="background-image: url('https://i.pinimg.com/originals/ee/54/f9/ee54f9815dc5281a0051789b92224012.jpg');">
-                </div>
-                <div class="event-details">
-                    <h3>Panel discussion</h3>
-                    <p class="date">📅 June 24 | 04:00 PM</p>
-                    <p class="location">📍SOA Auditorium, ITER</p>
-                </div>
-            </div>
-            <div class="event-card hidden">
-                <div class="event-image"
-                    style="background-image: url('https://techgenyz.com/wp-content/uploads/2022/12/BGMI_-PUBG-Mobile-2.4-update_-Beta-Version-Download.jpg');">
-                </div>
-                <div class="event-details">
-                    <h3>Esports 2025</h3>
-                    <p class="date">📅 August 31 | 6:00 PM</p>
-                    <p class="location">📍 Near Cafeteria, ITER</p>
-                </div>
-            </div>
-    </div>
-    <!-- View More / View Less Button -->
-    <button id="toggle-upcoming-events">View More</button>
 
-    <script src="script.js"></script>
+                <div class="w-80 bg-white border border-gray-300 rounded-lg shadow-lg overflow-hidden">
+                    <img class="w-full h-40 object-cover"
+                        src="https://i.pinimg.com/originals/ee/54/f9/ee54f9815dc5281a0051789b92224012.jpg"
+                        alt="Event Image">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Panel discussion</h3>
+                        <p class="text-sm text-gray-500 mt-1">May 15, 2025 • SOA Auditorium, ITER</p>
+                        <a href="#"
+                            class="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Register</a>
+                    </div>
+                </div>
+
+                <div class="w-80 bg-white border border-gray-300 rounded-lg shadow-lg overflow-hidden">
+                    <img class="w-full h-40 object-cover"
+                        src="https://techgenyz.com/wp-content/uploads/2022/12/BGMI_-PUBG-Mobile-2.4-update_-Beta-Version-Download.jpg"
+                        alt="Event Image">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Esports 2025</h3>
+                        <p class="text-sm text-gray-500 mt-1">May 15, 2025 • SOA Campus 2, BBSR</p>
+                        <a href="#"
+                            class="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Register</a>
+                    </div>
+                </div>
+            </div>
+            <!-- View All Events Button -->
+            <div class="flex justify-center mt-8">
+                <a href="all-events.html"
+                    class="bg-blue-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition">
+                    View All Events
+                </a>
+            </div>
+        </div>
+
+        <div class="container mx-auto mt-10 px-5">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">What our Users say</h2>
+
+        <div class="flex flex-wrap justify-center gap-6 px-6 py-8">
+            <!-- Testimonial Card 1 -->
+            <figure
+                class="md:w-[38%] w-full flex flex-col items-center justify-center p-8 text-center bg-gray-100 border border-gray-300 rounded-lg shadow-md">
+                <blockquote class="max-w-2xl mx-auto mb-4 text-gray-700">
+                    <h3 class="text-lg font-semibold text-gray-900">Very easy this was to integrate</h3>
+                    <p class="my-4">The platform made organizing our annual conference a breeze. The interface is
+                        intuitive and the support team was exceptional."</p>
+                </blockquote>
+                <figcaption class="flex items-center justify-center">
+                    <img class="rounded-full w-10 h-10"
+                        src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png"
+                        alt="profile picture">
+                    <div class="space-y-0.5 font-medium text-left ms-3">
+                        <div class="text-gray-900">Sarah Gupta</div>
+                        <div class="text-sm text-gray-600">Corporate Event Manager</div>
+                    </div>
+                </figcaption>
+            </figure>
+
+            <!-- Testimonial Card 2 -->
+            <figure
+                class="md:w-[38%] w-full flex flex-col items-center justify-center p-8 text-center bg-gray-100 border border-gray-300 rounded-lg shadow-md">
+                <blockquote class="max-w-2xl mx-auto mb-4 text-gray-700">
+                    <h3 class="text-lg font-semibold text-gray-900">Solid foundation for any project</h3>
+                    <p class="my-4">Perfect platform for managing multiple events. The dashboard makes it easy to track
+                        RSVPs and communicate with attendees."</p>
+                </blockquote>
+                <figcaption class="flex items-center justify-center">
+                    <img class="rounded-full w-10 h-10"
+                        src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/roberta-casas.png"
+                        alt="profile picture">
+                    <div class="space-y-0.5 font-medium text-left ms-3">
+                        <div class="text-gray-900">Roberta Casas</div>
+                        <div class="text-sm text-gray-600">Lead Designer
+                        </div>
+                    </div>
+                </figcaption>
+            </figure>
+
+            <!-- Testimonial Card 3 -->
+            <figure
+                class="md:w-[38%] w-full flex flex-col items-center justify-center p-8 text-center bg-gray-100 border border-gray-300 rounded-lg shadow-md">
+                <blockquote class="max-w-2xl mx-auto mb-4 text-gray-700">
+                    <h3 class="text-lg font-semibold text-gray-900">Mindblowing workflow</h3>
+                    <p class="my-4">The event management features are comprehensive and the mobile responsiveness is
+                        fantastic. Highly recommend!</p>
+                </blockquote>
+                <figcaption class="flex items-center justify-center">
+                    <img class="rounded-full w-10 h-10"
+                        src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png"
+                        alt="profile picture">
+                    <div class="space-y-0.5 font-medium text-left ms-3">
+                        <div class="text-gray-900">Jese Leos</div>
+                        <div class="text-sm text-gray-600">Software Engineer at Facebook</div>
+                    </div>
+                </figcaption>
+            </figure>
+
+            <!-- Testimonial Card 4 -->
+            <figure
+                class="md:w-[38%] w-full flex flex-col items-center justify-center p-8 text-center bg-gray-100 border border-gray-300 rounded-lg shadow-md">
+                <blockquote class="max-w-2xl mx-auto mb-4 text-gray-700">
+                    <h3 class="text-lg font-semibold text-gray-900">Efficient Collaborating</h3>
+                    <p class="my-4">You have many examples that can be used to create a fast prototype for your team."
+                    </p>
+                </blockquote>
+                <figcaption class="flex items-center justify-center">
+                    <img class="rounded-full w-10 h-10"
+                        src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/joseph-mcfall.png"
+                        alt="profile picture">
+                    <div class="space-y-0.5 font-medium text-left ms-3">
+                        <div class="text-gray-900">Joseph McFall</div>
+                        <div class="text-sm text-gray-600">CTO at Google</div>
+                    </div>
+                </figcaption>
+            </figure>
+        </div>
+
+
+        <script src="script.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 </body>
 
 </html>

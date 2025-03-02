@@ -4,19 +4,28 @@ window.addEventListener("load", function () {
 
     if (!introScreen || !mainContent) return; // Prevent errors if elements are missing
 
-    // Show the intro screen initially
-    introScreen.style.display = "flex";
-    mainContent.classList.add("hidden");
+    // Check if the page was loaded via back/forward navigation
+    const navEntries = performance.getEntriesByType("navigation");
+    const navType = navEntries.length > 0 ? navEntries[0].type : "navigate";
 
-    // After 4 seconds, fade out intro screen and show main content
-    setTimeout(() => {
-        introScreen.classList.add("fade-out");
+    if (navType === "back_forward" || sessionStorage.getItem("introShown")) {
+        // Skip intro if user is navigating back/forward or it has been shown already
+        introScreen.style.display = "none";
+        mainContent.classList.remove("hidden");
+    } else {
+        // Show intro screen normally for the first time
+        introScreen.style.display = "flex";
+        mainContent.classList.add("hidden");
 
         setTimeout(() => {
-            introScreen.style.display = "none"; // Hides intro screen
-            mainContent.classList.remove("hidden"); // Shows main content
-        }, 1000); // Matches fade-out duration
-    }, 4000); // Keep intro screen visible for 4 seconds
+            introScreen.classList.add("fade-out");
+            setTimeout(() => {
+                introScreen.style.display = "none";
+                mainContent.classList.remove("hidden");
+                sessionStorage.setItem("introShown", "true"); 
+            }, 1000);
+        }, 4000); 
+    }
 });
 
 // Ensure isLoggedIn is always false in localStorage
@@ -53,7 +62,7 @@ document.getElementById("loginForm")?.addEventListener("submit", function (e) {
     })
     .then(data => {
         localStorage.setItem("token", data.token);
-        localStorage.setItem("isLoggedIn", "false"); // Always force isLoggedIn to false
+        localStorage.setItem("isLoggedIn", "true");
         window.location.href = "index.html";
     })
     .catch(error => {

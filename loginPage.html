@@ -32,25 +32,25 @@
     </div>
     <!-- Form Section -->
     <div class="px-6 py-8">
-      <form action="index.html" method="GET">
+      <form id="loginForm">
         <div class="mb-4">
           <label class="block text-gray-700 text-sm font-semibold mb-2" for="email">
             Email
           </label>
           <input type="email" id="email" name="email" placeholder="Enter your email"
-            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2E8593]" />
+            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2E8593]" required>
         </div>
         <div class="mb-4">
           <label class="block text-gray-700 text-sm font-semibold mb-2" for="password">
             Password
           </label>
           <input type="password" id="password" name="password" placeholder="Enter your password"
-            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2E8593]" />
+            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2E8593]" required>
         </div>
         <div class="flex items-center justify-between mb-6">
           <div class="flex items-center">
             <input type="checkbox" id="remember" name="remember"
-              class="h-4 w-4 text-[#3497A1] focus:ring-[#2E8593] border-gray-300 rounded" />
+              class="h-4 w-4 text-[#3497A1] focus:ring-[#2E8593] border-gray-300 rounded">
             <label for="remember" class="ml-2 text-sm text-gray-600">Remember me</label>
           </div>
           <div class="text-sm">
@@ -63,6 +63,8 @@
             Login
           </button>
         </div>
+        <!-- Error Message Display -->
+        <div id="errorMsg" class="mt-4 text-center text-red-500"></div>
       </form>
       <p class="mt-4 text-center text-gray-600 text-sm">
         Don't have an account?
@@ -71,5 +73,39 @@
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+  <script>
+    // Intercept form submission to implement asynchronous login
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const errorMsg = document.getElementById('errorMsg');
+
+      fetch('https://3b1vkr9w-3000.inc1.devtunnels.ms/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+      })
+      .then(response => {
+        // Verify if the response status is OK (200)
+        if (!response.ok) {
+          throw new Error('Error: Login failed. Verify your credentials and try again.');
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Persist the authentication token and redirect on success
+        localStorage.setItem('token', data.token);
+        window.location.href = 'index.html';
+      })
+      .catch(error => {
+        // Display error message to the user in case of failure
+        errorMsg.textContent = error.message;
+      });
+    });
+  </script>
 </body>
 </html>

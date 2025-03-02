@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up - Event Listings</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+  <style>
+    /* Custom Animation for Signup Card */
+    .signup-card {
+      animation: fadeInScale 1.5s ease-in-out;
+    }
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center">
+  <!-- Signup Card -->
+  <div class="bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-md signup-card">
+    <!-- Header Section -->
+    <div class="bg-[#3497A1] px-6 py-4">
+      <h2 class="text-2xl font-bold text-white text-center">Create Your Account</h2>
+    </div>
+    <!-- Form Section -->
+    <div class="px-6 py-8">
+      <form>
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-semibold mb-2" for="fullName">
+            Full Name
+          </label>
+          <input type="text" id="fullName" name="fullName" placeholder="Your Full Name"
+                 class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2E8593]" />
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-semibold mb-2" for="email">
+            Email
+          </label>
+          <input type="email" id="email" name="email" placeholder="Your Email"
+                 class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2E8593]" />
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-semibold mb-2" for="password">
+            Password
+          </label>
+          <input type="password" id="password" name="password" placeholder="Enter Password"
+                 class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2E8593]" />
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-semibold mb-2" for="confirmPassword">
+            Confirm Password
+          </label>
+          <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password"
+                 class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2E8593]" />
+        </div>
+        <div class="mt-6">
+          <button type="submit"
+                    onclick="window.location.href=`index.html`"
+                  class="w-full bg-[#3497A1] text-white font-bold py-2 px-4 rounded-lg hover:bg-[#2E8593] transition duration-200">
+            Sign Up
+          </button>
+        </div>
+      </form>
+      <p class="mt-4 text-center text-gray-600 text-sm">
+        Already have an account?
+        <a href="loginPage.html" class="text-[#3497A1] hover:text-[#2E8593] font-semibold">Log in</a>
+      </p>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+</body>
+</html>

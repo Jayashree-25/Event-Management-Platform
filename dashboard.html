@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - Event Listings</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+  <style>
+    .fade-in {
+      animation: fadeInScale 1.5s ease-in-out;
+    }
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <!-- Header -->
+  <header class="bg-[#3497A1] text-white py-4 px-6">
+    <h1 class="text-3xl font-bold">Welcome back, [User Name]!</h1>
+  </header>
+
+  <!-- Dashboard Content -->
+  <main class="container mx-auto mt-8 px-6 fade-in">
+    
+    <!-- Created Events Section -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold mb-4">Your Created Events</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Example Created Event Card -->
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+          <img src="[Event Image URL]" alt="[Event Title]" class="w-full h-40 object-cover" />
+          <div class="p-4">
+            <h3 class="text-xl font-semibold">[Event Title]</h3>
+            <p class="text-sm text-gray-600">[Event Date] at [Event Time]</p>
+            <p class="text-gray-700 mt-2">[Event Location]</p>
+          </div>
+        </div>
+        <!-- Additional event cards as needed -->
+      </div>
+    </section>
+
+    <!-- Saved Events Section -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold mb-4">Your Saved Events</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Example Saved Event Card -->
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+          <img src="[Event Image URL]" alt="[Event Title]" class="w-full h-40 object-cover" />
+          <div class="p-4">
+            <h3 class="text-xl font-semibold">[Event Title]</h3>
+            <p class="text-sm text-gray-600">[Event Date] at [Event Time]</p>
+            <p class="text-gray-700 mt-2">[Event Location]</p>
+          </div>
+        </div>
+        <!-- Additional event cards as needed -->
+      </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold mb-4">Your RSVPs</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Example RSVP Event Card -->
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+          <img src="[Event Image URL]" alt="[Event Title]" class="w-full h-40 object-cover" />
+          <div class="p-4">
+            <h3 class="text-xl font-semibold">[Event Title]</h3>
+            <p class="text-sm text-gray-600">[Event Date] at [Event Time]</p>
+            <p class="text-gray-700 mt-2">[Event Location]</p>
+          </div>
+        </div>
+        <!-- Additional event cards as needed -->
+      </div>
+    </section>
+    
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+</body>
+</html>

@@ -100,47 +100,10 @@
         </div>
 
         <!-- Events Section -->
-        <div class="container mx-auto mt-10 px-6">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">NEW EVENTS</h2>
-
+        <div class="container mx-auto mt-10 px-6" <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">NEW
+            EVENTS</h2>
             <!-- Event Cards Container -->
-            <div class="flex flex-wrap justify-center gap-6">
-                <!-- Event Cards -->
-                <div class="w-80 bg-white border border-gray-300 rounded-lg shadow-lg overflow-hidden">
-                    <img class="w-full h-40 object-cover"
-                        src="https://tse4.mm.bing.net/th?id=OIP.zB4ujs-Qn4iEElXxC8ZyHwHaEK&pid=Api&P=0&h=180"
-                        alt="Event Image">
-                    <div class="p-4">
-                        <h4 class="text-xl font-semibold text-gray-800">Dance Arena</h4>
-                        <p class="text-sm text-gray-500 mt-1">March 10, 2025 • SOA Auditorium, ITER</p>
-                        <a href="#"
-                            class="mt-4 inline-block bg-[#3497A1] text-white px-4 py-2 rounded-lg hover:bg-[#2E8593] transition">Register</a>
-                    </div>
-                </div>
-
-                <div class="w-80 bg-white border border-gray-300 rounded-lg shadow-lg overflow-hidden">
-                    <img class="w-full h-40 object-cover"
-                        src="https://i.pinimg.com/originals/ee/54/f9/ee54f9815dc5281a0051789b92224012.jpg"
-                        alt="Event Image">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Panel discussion</h3>
-                        <p class="text-sm text-gray-500 mt-1">May 15, 2025 • SOA Auditorium, ITER</p>
-                        <a href="#"
-                            class="mt-4 inline-block bg-[#3497A1] text-white px-4 py-2 rounded-lg hover:bg-[#2E8593] transition">Register</a>
-                    </div>
-                </div>
-
-                <div class="w-80 bg-white border border-gray-300 rounded-lg shadow-lg overflow-hidden">
-                    <img class="w-full h-40 object-cover"
-                        src="https://techgenyz.com/wp-content/uploads/2022/12/BGMI_-PUBG-Mobile-2.4-update_-Beta-Version-Download.jpg"
-                        alt="Event Image">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Esports 2025</h3>
-                        <p class="text-sm text-gray-500 mt-1">May 15, 2025 • SOA Campus 2, BBSR</p>
-                        <a href="#"
-                            class="mt-4 inline-block bg-[#3497A1] text-white px-4 py-2 rounded-lg hover:bg-[#2E8593] transition">Register</a>
-                    </div>
-                </div>
+            <div class="flex flex-wrap justify-center gap-6" id="cardCon">
             </div>
             <!-- View All Events Button -->
             <div class="flex justify-center mt-8">
@@ -384,6 +347,53 @@
     </div>
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const token = localStorage.getItem("token");
+            if (!token) {
+                window.location.href = "./loginPage.html";
+            }
+
+            const mainContainer = document.querySelector("#cardCon");
+
+            try {
+                let response = await fetch('https://0l9bp3l4-3000.inc1.devtunnels.ms/noauth/events');
+                let data = await response.json();
+                let events = data.event.slice(0, 3);
+
+                events.forEach(event => {
+                    const card = `
+                <div class="w-80 bg-white border border-gray-300 rounded-lg shadow-lg overflow-hidden">
+                    <img class="w-full h-40 object-cover" src="${event.imageUrl}" alt="Event Image">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800">${event.title}</h3>
+                        <p class="text-sm text-gray-500 mt-1">${event.time} • ${event.location}</p>
+                        <button class="mt-4 bg-[#3497A1] text-white px-4 py-2 rounded-lg hover:bg-[#2E8593] transition btn-reg">
+                            Register
+                        </button>
+                    </div>
+                </div>
+            `;
+                    mainContainer.insertAdjacentHTML('beforeend', card);
+                });
+
+                // Add click event listener to all register buttons
+                document.querySelectorAll(".btn-reg").forEach(btn => {
+                    btn.addEventListener("click", Register);
+                });
+
+            } catch (error) {
+                console.error("Failed to fetch events:", error);
+            }
+        });
+
+        function Register(e) {
+            alert("You have registered successfully!");
+        }
+
+    </script>
+
+
 </body>
 
 </html>

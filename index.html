@@ -353,45 +353,58 @@
             if (!token) {
                 window.location.href = "./loginPage.html";
             }
-
+      
             const mainContainer = document.querySelector("#cardCon");
-
+      
             try {
                 let response = await fetch('https://0l9bp3l4-3000.inc1.devtunnels.ms/noauth/events');
                 let data = await response.json();
                 let events = data.event.slice(0, 3);
-
+                console.log(events);
+      
                 events.forEach(event => {
                     const card = `
-                <div class="w-80 bg-white border border-gray-300 rounded-lg shadow-lg overflow-hidden">
-                    <img class="w-full h-40 object-cover" src="${event.imageUrl}" alt="Event Image">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">${event.title}</h3>
-                        <p class="text-sm text-gray-500 mt-1">${event.time} • ${event.location}</p>
-                        <button class="mt-4 bg-[#3497A1] text-white px-4 py-2 rounded-lg hover:bg-[#2E8593] transition btn-reg">
-                            Register
-                        </button>
-                    </div>
-                </div>
-            `;
+                        <div class="w-80 bg-white border border-gray-300 rounded-lg shadow-lg overflow-hidden">
+                            <img class="w-full h-40 object-cover" src="${event.imageUrl}" alt="Event Image">
+                            <div class="p-4">
+                                <h3 class="text-xl font-semibold text-gray-800">${event.title}</h3>
+                                <p class="text-sm text-gray-500 mt-1">${event.time} • ${event.location}</p>
+                                <button id="register" onclick="Register('${event._id}')" class="mt-4 bg-[#3497A1] text-white px-4 py-2 rounded-lg hover:bg-[#2E8593] transition btn-reg">
+                                    Register
+                                </button>
+                            </div>
+                        </div>
+                    `;
                     mainContainer.insertAdjacentHTML('beforeend', card);
                 });
-
-                // Add click event listener to all register buttons
-                document.querySelectorAll(".btn-reg").forEach(btn => {
-                    btn.addEventListener("click", Register);
-                });
-
+      
             } catch (error) {
                 console.error("Failed to fetch events:", error);
             }
         });
-
-        function Register(e) {
-            alert("You have registered successfully!");
+      
+        const Register = async (id) => {
+            // Retrieve token within the Register function
+            const token = localStorage.getItem("token");
+      
+            let res = await fetch(`https://0l9bp3l4-3000.inc1.devtunnels.ms/events/${id}/rsvp`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                },
+            });
+            let data = await res.json();
+            console.log(data);
+            if(data){
+                const btn = document.querySelector("#register");
+                btn.remove();
+                alert("Your Event Is Register")
+            }
+            
         }
-
-    </script>
+      </script>
+      
 
 
 </body>

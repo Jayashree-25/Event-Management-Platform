@@ -43,6 +43,13 @@
             }
         }
 
+        #profile-icon {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 100;
+        }
+
         #section {
             margin-top: 40px;
         }
@@ -50,6 +57,8 @@
 </head>
 
 <body class="bg-gray-50 min-h-screen">
+
+
 
     <!-- Cool Animated Intro Screen -->
     <div id="intro-screen"
@@ -60,6 +69,11 @@
 
     <!-- Main Content (Initially Hidden) -->
     <div id="main-content" class="hidden">
+
+        <div id="profile-icon" class="hidden" onclick="window.location.href=`dashboard.html`">
+            <img src="https://img.freepik.com/premium-vector/avatar-profile-icon-flat-style-female-user-profile-vector-illustration-isolated-background-women-profile-sign-business-concept_157943-38866.jpg?semt=ais_hybrid"
+                alt="Profile Icon" class="w-10 h-10 rounded-full shadow-md">
+        </div>
         <!-- 🌟 Header with Banner & Text -->
         <div class="relative w-full h-48">
             <img class="w-full h-full object-cover"
@@ -282,9 +296,10 @@
                     class="flex flex-row items-center self-center justify-center flex-shrink-0 shadow-md lg:justify-end">
                     <div class="flex flex-row">
                         <input type="text" placeholder="example@email.com" class="w-3/5 p-3 rounded-l-lg sm:w-2/3">
-                        <button type="button"
+                        <button type="button" onclick="window.location.href='signupPage.html'"
                             class="w-2/5 p-3 font-semibold rounded-r-lg sm:w-1/3 dark:bg-[#3497A1] dark:text-gray-50">Sign
-                            UP</button>
+                            UP
+                        </button>
                     </div>
                 </div>
             </div>
@@ -348,22 +363,22 @@
                         <div class="uppercase dark:text-gray-900 font-semibold">Social Media</div>
                         <div class="flex space-x-2">
                             <a href="https://www.facebook.com" title="Facebook" target="_blank">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" 
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
                                     alt="Facebook" class="w-8 h-8 hover:opacity-75 transition duration-200">
                             </a>
                             <a href="https://www.twitter.com" title="Twitter" target="_blank">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Logo_of_Twitter.svg/512px-Logo_of_Twitter.svg.png?20220821125553" 
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Logo_of_Twitter.svg/512px-Logo_of_Twitter.svg.png?20220821125553"
                                     alt="Twitter" class="w-8 h-8 hover:opacity-75 transition duration-200">
                             </a>
                             <a href="https://www.instagram.com" title="Instagram" target="_blank">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" 
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
                                     alt="Instagram" class="w-8 h-8 hover:opacity-75 transition duration-200">
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="py-6 text-sm text-center dark:text-gray-600">© 1968 Company Co. All rights reserved.</div>
+            <div class="py-6 text-sm text-center dark:text-gray-600">© 1968 Company Co. All rights reserved</div>
         </footer>
 
     </div>

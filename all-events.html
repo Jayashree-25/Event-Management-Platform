@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,11 +11,13 @@
     .fade-in {
       animation: fadeInScale 1.5s ease-in-out;
     }
+
     @keyframes fadeInScale {
       from {
         opacity: 0;
         transform: scale(0.8);
       }
+
       to {
         opacity: 1;
         transform: scale(1);
@@ -22,37 +25,29 @@
     }
   </style>
 </head>
+
 <body class="bg-gray-50 min-h-screen">
   <!-- Header -->
   <header class="bg-[#3497A1] text-white py-4 px-6">
-    <h1 class="text-3xl font-bold">Welcome back, [User Name]!</h1>
+    <h1 class="text-3xl font-bold">Welcome back !</h1>
   </header>
 
   <!-- Dashboard Content -->
   <main class="container mx-auto mt-8 px-6 fade-in">
-    <!-- All Events Section -->
     <section>
       <h2 class="text-2xl font-bold mb-4">All Events</h2>
-      <div id="allEventsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Dynamic event cards will be inserted here -->
-      </div>
+      <div id="allEventsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
     </section>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Retrieve the JWT token from local storage.
       const token = localStorage.getItem('token');
       if (!token) {
-        // Redirect to login if token is absent.
         window.location.href = './loginPage.html';
         return;
       }
-      console.log(token);
-      
 
-      // Fetch all events using the JWT token in the Authorization header.
       fetch('https://0l9bp3l4-3000.inc1.devtunnels.ms/events', {
         method: 'GET',
         headers: {
@@ -60,62 +55,94 @@
           'Authorization': 'Bearer ' + token
         }
       })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Failed to fetch events. Please try again.');
-        }
-        
-        return response.json();
-      })
-      .then(data => {
-        // Assuming the API returns an array of 6 events.
-        console.log(data)
-        const events = data.events;
-        const container = document.getElementById('allEventsContainer');
-        
-        // Dynamically create and append an event card for each event.
-        events.forEach(event => {
-          const card = document.createElement('div');
-          card.className = 'bg-white shadow-lg rounded-lg overflow-hidden';
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Failed to fetch events. Please try again.');
+          }
+          return response.json();
+        })
+        .then(data => {
+          const events = data.events;
+          const container = document.getElementById('allEventsContainer');
 
-          // Use a fallback image if event image is not available.
-          const imageUrl = event.image || 'https://via.placeholder.com/400x200';
-          const image = document.createElement('img');
-          image.src = imageUrl;
-          image.alt = event.title;
-          image.className = 'w-full h-40 object-cover';
-          card.appendChild(image);
+          events.forEach(event => {
+            const card = document.createElement('div');
+            card.className = 'bg-white shadow-lg rounded-lg overflow-hidden';
 
-          const cardContent = document.createElement('div');
-          cardContent.className = 'p-4';
+            const imageUrl = event.image || 'https://via.placeholder.com/400x200';
+            const image = document.createElement('img');
+            image.src = imageUrl;
+            image.alt = event.title;
+            image.className = 'w-full h-40 object-cover';
+            card.appendChild(image);
 
-          const title = document.createElement('h3');
-          title.className = 'text-xl font-semibold';
-          title.textContent = event.title;
-          cardContent.appendChild(title);
+            const cardContent = document.createElement('div');
+            cardContent.className = 'p-4';
 
-          const dateTime = document.createElement('p');
-          dateTime.className = 'text-sm text-gray-600';
-          // Format the event date and time. Adjust property names as needed.
-          dateTime.textContent = `${event.date} at ${event.time}`;
-          cardContent.appendChild(dateTime);
+            const title = document.createElement('h3');
+            title.className = 'text-xl font-semibold';
+            title.textContent = event.title;
+            cardContent.appendChild(title);
 
-          const location = document.createElement('p');
-          location.className = 'text-gray-700 mt-2';
-          location.textContent = event.location;
-          cardContent.appendChild(location);
+            const dateTime = document.createElement('p');
+            dateTime.className = 'text-sm text-gray-600';
+            dateTime.textContent = `${event.date} at ${event.time}`;
+            cardContent.appendChild(dateTime);
 
-          card.appendChild(cardContent);
-          container.appendChild(card);
+            const location = document.createElement('p');
+            location.className = 'text-gray-700 mt-2';
+            location.textContent = event.location;
+            cardContent.appendChild(location);
+
+            const registerButton = document.createElement('button');
+            registerButton.className = 'mt-4 bg-[#3497A1] text-white px-4 py-2 rounded-lg hover:bg-[#287a85] transition';
+            registerButton.textContent = 'Register';
+            registerButton.onclick = () => Register(event._id, registerButton);
+            cardContent.appendChild(registerButton);
+
+            card.appendChild(cardContent);
+            container.appendChild(card);
+          });
+        })
+        .catch(error => {
+          console.error('Error fetching events:', error);
+          document.getElementById('allEventsContainer').innerHTML = `<p class="text-red-500 text-center">${error.message}</p>`;
         });
-      })
-      .catch(error => {
-        console.error('Error fetching events:', error);
-        // Optionally display an error notification to the user.
-        const container = document.getElementById('allEventsContainer');
-        container.innerHTML = `<p class="text-red-500 text-center">${error.message}</p>`;
-      });
+
+      const Register = async (id, btn) => {
+        btn.innerHTML = 'Loading...'; // Show loading text
+        btn.disabled = true;
+        const token = localStorage.getItem("token");
+        try {
+          let res = await fetch(`https://0l9bp3l4-3000.inc1.devtunnels.ms/events/${id}/rsvp`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + token
+            },
+          });
+
+          console.log(res);
+          let data = await res.json();
+          console.log(data);
+
+          if (res.ok) {
+            btn.remove();
+            alert("Your Event Is Registered");
+          } else {
+            alert(data.message || "Registration failed.");
+            btn.innerHTML = 'Register';
+            btn.disabled = false;
+          }
+        } catch (error) {
+          console.error("Error during registration:", error);
+          btn.innerHTML = 'Register';
+          btn.disabled = false;
+          alert("Something went wrong. Try again!");
+        }
+      }
     });
   </script>
 </body>
+
 </html>

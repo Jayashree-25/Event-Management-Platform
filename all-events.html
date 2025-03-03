@@ -46,14 +46,14 @@
       const token = localStorage.getItem('token');
       if (!token) {
         // Redirect to login if token is absent.
-        window.location.href = 'login.html';
+        window.location.href = './loginPage.html';
         return;
       }
       console.log(token);
       
 
       // Fetch all events using the JWT token in the Authorization header.
-      fetch('https://3b1vkr9w-3000.inc1.devtunnels.ms/events', {
+      fetch('https://0l9bp3l4-3000.inc1.devtunnels.ms/events', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -64,6 +64,7 @@
         if (!response.ok) {
           throw new Error('Failed to fetch events. Please try again.');
         }
+        
         return response.json();
       })
       .then(data => {

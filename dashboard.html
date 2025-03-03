@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,13 +10,11 @@
     .fade-in {
       animation: fadeInScale 1.5s ease-in-out;
     }
-
     @keyframes fadeInScale {
       from {
         opacity: 0;
         transform: scale(0.8);
       }
-
       to {
         opacity: 1;
         transform: scale(1);
@@ -25,47 +22,34 @@
     }
   </style>
 </head>
-
 <body class="bg-gray-50 min-h-screen">
   <!-- Header -->
-  <header class="bg-[#3497A1] text-white py-4 px-6">
+  <header class="bg-[#3497A1] text-white py-4 px-6 flex items-center justify-between">
     <h1 class="text-3xl font-bold">Welcome back, [User Name]!</h1>
+    <!-- Create Event Button -->
+    <button onclick="window.location.href='publish.html'" 
+            class="bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 transition duration-200">
+      Create Event
+    </button>
   </header>
 
   <!-- Dashboard Content -->
   <main class="container mx-auto mt-8 px-6 fade-in">
-
     <!-- Created Events Section -->
     <section class="mb-10">
       <h2 class="text-2xl font-bold mb-4">Your Created Events</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Example Created Event Card -->
-        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-          <img src="[Event Image URL]" alt="[Event Title]" class="w-full h-40 object-cover" />
-          <div class="p-4">
-            <h3 class="text-xl font-semibold">[Event Title]</h3>
-            <p class="text-sm text-gray-600">[Event Date] at [Event Time]</p>
-            <p class="text-gray-700 mt-2">[Event Location]</p>
-          </div>
-        </div>
-        <!-- Additional event cards as needed -->
+      <div id="created-events" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Event cards will be injected here -->
+        <p class="text-gray-700">No events created yet.</p>
       </div>
     </section>
 
     <!-- RSVP Section -->
     <section class="mb-10">
       <h2 class="text-2xl font-bold mb-4">Your RSVPs</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Example RSVP Event Card -->
-        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-          <img src="[Event Image URL]" alt="[Event Title]" class="w-full h-40 object-cover" />
-          <div class="p-4">
-            <h3 class="text-xl font-semibold">[Event Title]</h3>
-            <p class="text-sm text-gray-600">[Event Date] at [Event Time]</p>
-            <p class="text-gray-700 mt-2">[Event Location]</p>
-          </div>
-        </div>
-        <!-- Additional event cards as needed -->
+      <div id="created-events" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Event cards will be injected here -->
+        <p class="text-gray-700">No events created yet.</p>
       </div>
     </section>
 
@@ -80,12 +64,41 @@
 
   <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
   <script>
-    // Handle the signout button click event 
+    function renderCreatedEvents() {
+      const eventsContainer = document.getElementById('created-events');
+      const events = JSON.parse(localStorage.getItem('events')) || [];
+
+      // If no events, display a message
+      if (events.length === 0) {
+        eventsContainer.innerHTML = '<p class="text-gray-700">No events created yet.</p>';
+        return;
+      }
+      
+      // Otherwise, clear the container and create cards for each event
+      eventsContainer.innerHTML = '';
+      events.forEach(event => {
+        const card = document.createElement('div');
+        card.className = "bg-white shadow-lg rounded-lg overflow-hidden";
+        card.innerHTML = `
+          <img src="${event.imgUrl}" alt="${event.title}" class="w-full h-40 object-cover" />
+          <div class="p-4">
+            <h3 class="text-xl font-semibold">${event.title}</h3>
+            <p class="text-sm text-gray-600">${event.date} at ${event.time}</p>
+            <p class="text-gray-700 mt-2">${event.location}</p>
+          </div>
+        `;
+        eventsContainer.appendChild(card);
+      });
+    }
+
+    // Handle the signout button click event
     document.getElementById('signout-btn').addEventListener('click', function () {
       localStorage.setItem('isLoggedIn', false);
       window.location.href = 'index.html';
-    }); 
+    });
+
+    // When the DOM content is loaded, render the created events
+    document.addEventListener('DOMContentLoaded', renderCreatedEvents);
   </script>
 </body>
-
 </html>

@@ -99,6 +99,7 @@
       .then(data => {
         // Persist the authentication token and redirect on success
         localStorage.setItem('token', data.token);
+        localStorage.setItem('isLoggedIn', true)
         window.location.href = 'index.html';
       })
       .catch(error => {

@@ -41,18 +41,21 @@ window.addEventListener("load", function () {
     console.log("Page load: isLoggedIn =", localStorage.getItem("isLoggedIn"));
 
     const profileIcon = document.getElementById("profile-icon");
+    const signupSection = document.getElementById("section");
     if (!profileIcon) {
         console.error("Profile icon element not found in the DOM.");
         return;
     }
 
     // Toggle profile icon visibility based on login state
-    if (localStorage.getItem("isLoggedIn") === "true") {
+    if (localStorage.getItem('isLoggedIn') === 'true') {
         console.log("User is logged in. Removing 'hidden' class from profile icon.");
         profileIcon.classList.remove("hidden");
+        signupSection.classList.add("hidden")
     } else {
         console.log("User is not logged in. Adding 'hidden' class to profile icon.");
         profileIcon.classList.add("hidden");
+        signupSection.classList.remove("hidden");
     }
 
     // Intro and main content logic remains unchanged
@@ -108,36 +111,34 @@ document.getElementById("search-btn")?.addEventListener("click", function () {
 // Remove any resetting of the login state on the login page as well.
 
 // Login form submission handling with robust logging
-document.getElementById("loginForm")?.addEventListener("submit", function (e) {
-    e.preventDefault();
+// document.getElementById("loginForm")?.addEventListener("submit", function (e) {
+//     e.preventDefault();
 
-    const email = document.getElementById("email")?.value;
-    const password = document.getElementById("password")?.value;
-    const errorMsg = document.getElementById("errorMsg");
+//     const email = document.getElementById("email")?.value;
+//     const password = document.getElementById("password")?.value;
+//     const errorMsg = document.getElementById("errorMsg");
 
-    fetch("https://3b1vkr9w-3000.inc1.devtunnels.ms/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password })
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error("Error: Login failed. Verify your credentials and try again.");
-        }
-        return response.json();
-    })
-    .then(data => {
-        localStorage.setItem("token", data.token);
-
-        localStorage.setItem("isLoggedIn", "true");
-        console.log("Login successful. isLoggedIn =", localStorage.getItem("isLoggedIn"));
+//     fetch("https://3b1vkr9w-3000.inc1.devtunnels.ms/api/auth/login", {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({ email, password })
+//     })
+//     .then(response => {
+//         if (!response.ok) {
+//             throw new Error("Error: Login failed. Verify your credentials and try again.");
+//         }
+//         return response.json();
+//     })
+//     .then(data => {
+//         localStorage.setItem("token", data.token);
+//         console.log("Login successful. isLoggedIn =", localStorage.getItem("isLoggedIn"));
         
-        setTimeout(() => {
-            window.location.href = "index.html";
-        }, 10000);
-    })
-    .catch(error => {
-        console.error("Login error:", error.message);
-        errorMsg.textContent = error.message;
-    });
-});
+//         // setTimeout(() => {
+//         //     window.location.href = "index.html";
+//         // }, 10000);
+//     })
+//     .catch(error => {
+//         console.error("Login error:", error.message);
+//         errorMsg.textContent = error.message;
+//     });
+// });

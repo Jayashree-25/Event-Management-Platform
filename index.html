@@ -353,7 +353,7 @@
             const mainContainer = document.querySelector("#cardCon");
       
             try {
-                let response = await fetch('https://0l9bp3l4-3000.inc1.devtunnels.ms/noauth/events');
+                let response = await fetch('https://3b1vkr9w-3000.inc1.devtunnels.ms/noauth/events');
                 let data = await response.json();
                 let events = data.event.slice(0, 3);
                 console.log(events);
@@ -383,7 +383,7 @@
             // Retrieve token within the Register function
             const token = localStorage.getItem("token");
       
-            let res = await fetch(`https://0l9bp3l4-3000.inc1.devtunnels.ms/events/${id}/rsvp`, {
+            let res = await fetch(`https://3b1vkr9w-3000.inc1.devtunnels.ms/events/${id}/rsvp`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,6 +11,7 @@
     body {
       background: linear-gradient(135deg, #0F2027, #203A43, #2C5364);
     }
+
     .glass-box {
       background: rgba(255, 255, 255, 0.2);
       border-radius: 16px;
@@ -18,62 +20,81 @@
       border: 1px solid rgba(255, 255, 255, 0.3);
       padding: 20px;
     }
+
     label {
       font-size: 0.875rem;
       color: #ffffff;
     }
+
     select {
       background-color: rgba(255, 255, 255, 0.1);
     }
   </style>
 </head>
+
 <body class="flex flex-col items-center justify-center min-h-screen">
   <div class="glass-box max-w-lg w-full p-8">
     <form id="eventForm" class="space-y-6">
       <!-- TITLE -->
       <div class="relative z-0 w-full group">
-        <input type="text" id="title" class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#3497A1] peer" placeholder=" " required />
+        <input type="text" id="title"
+          class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#3497A1] peer"
+          placeholder=" " required />
         <label for="title">Title</label>
       </div>
       <!-- DESCRIPTION -->
       <div class="relative z-0 w-full group">
-        <textarea id="description" rows="4" class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#3497A1] peer" placeholder=" " required></textarea>
+        <textarea id="description" rows="4"
+          class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#3497A1] peer"
+          placeholder=" " required></textarea>
         <label for="description">Description</label>
       </div>
       <!-- LOCATION -->
       <div class="relative z-0 w-full group">
-        <input type="text" id="location" class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#3497A1] peer" placeholder=" " required />
+        <input type="text" id="location"
+          class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#3497A1] peer"
+          placeholder=" " required />
         <label for="location">Location</label>
       </div>
       <!-- DATE -->
       <div class="relative z-0 w-full group">
-        <input type="date" id="date" class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#3497A1] peer" required />
+        <input type="date" id="date"
+          class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#3497A1] peer"
+          required />
         <label for="date">Date</label>
       </div>
       <!-- TIME -->
       <div class="relative z-0 w-full group">
-        <input type="time" id="time" class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#3497A1] peer" required />
+        <input type="time" id="time"
+          class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#3497A1] peer"
+          required />
         <label for="time">Time</label>
       </div>
       <!-- IMAGE URL -->
       <div class="relative z-0 w-full group">
-        <input type="url" id="imgUrl" class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#3497A1] peer" placeholder=" " required />
+        <input type="url" id="imgUrl"
+          class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#3497A1] peer"
+          placeholder=" " required />
         <label for="imgUrl">Image URL</label>
       </div>
       <!-- STATUS (This field is retained but will be overridden to 'published') -->
       <div class="relative z-0 w-full group">
         <label for="status" class="block mb-1">Status</label>
-        <select id="status" class="block py-2.5 px-3 w-full text-sm text-white bg-gray-700 border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-[#3497A1]">
+        <select id="status"
+          class="block py-2.5 px-3 w-full text-sm text-white bg-gray-700 border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-[#3497A1]">
           <option value="upcoming">Upcoming</option>
           <option value="Going-on">Going on</option>
           <option value="finished">Finished</option>
         </select>
       </div>
-      <button type="submit" class="w-full px-5 py-2.5 text-sm font-medium text-white bg-[#3497A1] rounded-lg hover:bg-[#2E8593] focus:ring-4 focus:outline-none focus:ring-[#2E8593]">Submit</button>
+      <button type="submit"
+        class="w-full px-5 py-2.5 text-sm font-medium text-white bg-[#3497A1] rounded-lg hover:bg-[#2E8593] focus:ring-4 focus:outline-none focus:ring-[#2E8593]">Submit</button>
     </form>
   </div>
 
-  <script>
+  <script type="module">
+
+    import config from './config.js';
     document.getElementById('eventForm').addEventListener('submit', function (event) {
       event.preventDefault();
       console.log("Form submission triggered.");
@@ -100,7 +121,7 @@
       const publishEvent = async () => {
         try {
           console.log("Initiating API call to publish event...");
-          const res = await fetch('https://3b1vkr9w-3000.inc1.devtunnels.ms/events', {
+          const res = await fetch(`${config.BASE_URL}/events`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -111,9 +132,11 @@
           console.log("API call response:", res);
 
           if (!res.ok) {
-            console.error("API response error:", res.status, res.statusText);
-            throw new Error("❌ Publish failed. Please check your details.");
+            const errorData = await res.json();
+            console.error("Detailed API error:", errorData);
+            throw new Error(errorData.message || "❌ Publish failed. Please check your details.");
           }
+
 
           const data = await res.json();
           console.log("Response JSON:", data);
@@ -131,4 +154,5 @@
     });
   </script>
 </body>
+
 </html>

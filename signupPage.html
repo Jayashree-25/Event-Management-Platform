@@ -36,7 +36,8 @@
     </div>
     <!-- Form Section -->
     <div class="px-6 py-8">
-      <form onsubmit="registerUser(event)">
+      <!-- <form onsubmit="registerUser(event)"></form> -->
+      <form id="signupForm">   
         <div class="mb-4">
           <label class="block text-gray-700 text-sm font-semibold mb-2" for="fullName">
             Full Name
@@ -78,6 +79,56 @@
 
   <script type="module">
     import config from './config.js';
+  
+    // Wait for the page to fully load before adding event listeners
+    document.addEventListener("DOMContentLoaded", () => {
+      const signupForm = document.getElementById("signupForm");
+  
+      // Attach the event listener for form submission
+      signupForm.addEventListener("submit", async (event) => {
+        event.preventDefault(); // Prevents form from reloading the page
+  
+        // Get input values
+        const name = document.getElementById("fullName").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+  
+        // Validate input fields
+        if (!name || !email || !password) {
+          alert("❌ All fields are required.");
+          return;
+        }
+  
+        const url = `${config.BASE_URL}/api/auth/register`;
+  
+        try {
+          const res = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, password }),
+          });
+  
+          const data = await res.json();
+          console.log("API Response:", data); // Debugging
+  
+          if (!res.ok) {
+            throw new Error(data.message || "❌ Registration failed. Please check your details.");
+          }
+  
+          // ✅ Show success message & Redirect to Login Page
+          alert("✅ Registration Successful! Redirecting to login...");
+          window.location.href = 'loginPage.html';
+  
+        } catch (error) {
+          console.error(error.message);
+          alert(error.message);
+        }
+      });
+    });
+  </script>  
+
+  <!-- <script type="module">
+    import config from './config.js';
     // Function to Register User
     const registerUser = async (event) => {
       event.preventDefault(); // Prevent Form Reload
@@ -85,9 +136,10 @@
       const name = document.getElementById("fullName").value;
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
-
+      const url = `${config.BASE_URL}/api/auth/register`;
+      console.log(url);
       try {
-        const res = await fetch(`${config.BASE_URL}/api/auth/register`, {
+        const res = await fetch(url, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -113,7 +165,7 @@
         console.error(error.message);
         alert(error.message);
       }
-    };
+    }; -->
   </script>
 </body>
 

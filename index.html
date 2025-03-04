@@ -100,19 +100,20 @@
         </div>
 
         <!-- Events Section -->
-        <div class="container mx-auto mt-10 px-6" <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">NEW
-            EVENTS</h2>
+        <div class="container mx-auto mt-10 px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">NEW EVENTS</h2>
             <!-- Event Cards Container -->
-            <div class="flex flex-wrap justify-center gap-6" id="cardCon">
+            <div id="allEventsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
             </div>
             <!-- View All Events Button -->
             <div class="flex justify-center mt-8">
                 <a href="all-events.html"
-                    class="bg-[#3497A1] text-white px-6 py-3 rounded-lg text-lg font-semibold bg-[#2E8593] transition hover:bg-[#2E8593]">
+                    class="bg-[#3497A1] text-white px-6 py-3 rounded-lg text-lg font-semibold transition hover:bg-[#2E8593]">
                     View All Events
                 </a>
             </div>
         </div>
+
 
         <div class="container mx-auto mt-10 px-6">
             <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Why To Choose Our Platform?</h2>
@@ -260,7 +261,7 @@
                         class="px-8 py-1 font-semibold rounded-lg dark:bg-[#3497A1] dark:text-gray-50 hover:bg-[#26737D] transition-all">
                         Sign Up
                     </button>
-                </div>                
+                </div>
             </div>
         </section>
 
@@ -343,64 +344,113 @@
     </div>
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", async () => {
-            const token = localStorage.getItem("token");
+    <script type="module">
+        import config from './config.js';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('token');
             if (!token) {
-                window.location.href = "./loginPage.html";
+                window.location.href = './loginPage.html';
+                return;
             }
-      
-            const mainContainer = document.querySelector("#cardCon");
-      
-            try {
-                let response = await fetch('https://3b1vkr9w-3000.inc1.devtunnels.ms/noauth/events');
-                let data = await response.json();
-                let events = data.event.slice(0, 3);
-                console.log(events);
-      
-                events.forEach(event => {
-                    const card = `
-                        <div class="w-80 bg-white border border-gray-300 rounded-lg shadow-lg overflow-hidden">
-                            <img class="w-full h-40 object-cover" src="${event.imageUrl}" alt="Event Image">
-                            <div class="p-4">
-                                <h3 class="text-xl font-semibold text-gray-800">${event.title}</h3>
-                                <p class="text-sm text-gray-500 mt-1">${event.time} • ${event.location}</p>
-                                <button id="register" onclick="Register('${event._id}')" class="mt-4 bg-[#3497A1] text-white px-4 py-2 rounded-lg hover:bg-[#2E8593] transition btn-reg">
-                                    Register
-                                </button>
-                            </div>
-                        </div>
-                    `;
-                    mainContainer.insertAdjacentHTML('beforeend', card);
-                });
-      
-            } catch (error) {
-                console.error("Failed to fetch events:", error);
-            }
-        });
-      
-        const Register = async (id) => {
-            // Retrieve token within the Register function
-            const token = localStorage.getItem("token");
-      
-            let res = await fetch(`https://3b1vkr9w-3000.inc1.devtunnels.ms/events/${id}/rsvp`, {
-                method: 'POST',
+
+            fetch(`${config.BASE_URL}/events`, {
+                method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + token
-                },
-            });
-            let data = await res.json();
-            console.log(data);
-            if(data){
-                const btn = document.querySelector("#register");
-                btn.remove();
-                alert("Your Event Is Register")
+                }
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch events. Please try again.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const events = data.events;
+                    const container = document.getElementById('allEventsContainer');
+
+                    events.forEach(event => {
+                        const card = document.createElement('div');
+                        card.className = 'bg-white shadow-lg rounded-lg overflow-hidden';
+
+                        const imageUrl = event.image || 'https://via.placeholder.com/400x200';
+                        const image = document.createElement('img');
+                        image.src = imageUrl;
+                        image.alt = event.title;
+                        image.className = 'w-full h-40 object-cover';
+                        card.appendChild(image);
+
+                        const cardContent = document.createElement('div');
+                        cardContent.className = 'p-4';
+
+                        const title = document.createElement('h3');
+                        title.className = 'text-xl font-semibold';
+                        title.textContent = event.title;
+                        cardContent.appendChild(title);
+
+                        const dateTime = document.createElement('p');
+                        dateTime.className = 'text-sm text-gray-600';
+                        dateTime.textContent = `${event.date} at ${event.time}`;
+                        cardContent.appendChild(dateTime);
+
+                        const location = document.createElement('p');
+                        location.className = 'text-gray-700 mt-2';
+                        location.textContent = event.location;
+                        cardContent.appendChild(location);
+
+                        const registerButton = document.createElement('button');
+                        registerButton.className = 'mt-4 bg-[#3497A1] text-white px-4 py-2 rounded-lg hover:bg-[#287a85] transition';
+                        registerButton.textContent = 'Register';
+                        registerButton.onclick = () => Register(event._id, registerButton);
+                        cardContent.appendChild(registerButton);
+
+                        card.appendChild(cardContent);
+                        container.appendChild(card);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching events:', error);
+                    document.getElementById('allEventsContainer').innerHTML = `<p class="text-red-500 text-center">${error.message}</p>`;
+                });
+
+            const Register = async (id, btn) => {
+                btn.innerHTML = 'Loading...'; // Show loading text
+                btn.disabled = true;
+                const token = localStorage.getItem("token");
+                try {
+                    let res = await fetch(`${config.BASE_URL}/events/${id}/rsvp`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer ' + token
+                        },
+                    });
+
+                    console.log(res);
+                    let data = await res.json();
+                    console.log(data);
+
+                    if (res.ok) {
+                        btn.remove();
+                        alert("Your Event Is Registered");
+                    } else {
+                        alert(data.message || "Registration failed.");
+                        btn.innerHTML = 'Register';
+                        btn.disabled = false;
+                    }
+                } catch (error) {
+                    console.error("Error during registration:", error);
+                    btn.innerHTML = 'Register';
+                    btn.disabled = false;
+                    alert("Something went wrong. Try again!");
+                }
             }
-            
-        }
-      </script>
-      
+        });
+
+    </script>
+
 </body>
 
 </html>

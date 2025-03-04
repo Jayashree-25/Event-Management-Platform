@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,19 +11,28 @@
     .fade-in {
       animation: fadeInScale 1.5s ease-in-out;
     }
+
     @keyframes fadeInScale {
-      from { opacity: 0; transform: scale(0.8); }
-      to { opacity: 1; transform: scale(1); }
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
   </style>
 </head>
+
 <body class="bg-gray-50 min-h-screen">
   <!-- Header -->
   <header class="bg-[#3497A1] text-white py-4 px-6 flex items-center justify-between">
     <h1 id="welcome-message" class="text-3xl font-bold">Welcome back!</h1>
     <!-- Create Event Button -->
-    <button onclick="window.location.href='publish.html'" 
-            class="bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 transition duration-200">
+    <button onclick="window.location.href='publish.html'"
+      class="bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 transition duration-200">
       Create Event
     </button>
   </header>
@@ -55,7 +65,10 @@
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
-  <script>
+  <script type="module">
+
+    import config from './config.js';
+    
     // Helper: Create an event card element
     const createEventCard = (event) => {
       const card = document.createElement('div');
@@ -93,7 +106,7 @@
           eventId = eventId["$oid"];
         }
         console.log("Fetching event details for ID:", eventId);
-        const res = await fetch(`https://3b1vkr9w-3000.inc1.devtunnels.ms/events/${eventId}`, {
+        const res = await fetch(`${config.BASE_URL}/one/${eventId}/events`, {
           method: 'GET', // Using PUT as per your API requirement
           headers: {
             'Content-Type': 'application/json',
@@ -128,7 +141,7 @@
           return;
         }
         console.log("Initiating API call to fetch user profile...");
-        const res = await fetch('https://3b1vkr9w-3000.inc1.devtunnels.ms/api/auth/profile', {
+        const res = await fetch(`${config.BASE_URL}/api/auth/profile`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -190,4 +203,5 @@
     document.addEventListener('DOMContentLoaded', fetchUserData);
   </script>
 </body>
+
 </html>

@@ -40,7 +40,9 @@
     </section>
   </main>
 
-  <script>
+  <script type="module">
+    import config from './config.js';
+
     document.addEventListener('DOMContentLoaded', () => {
       const token = localStorage.getItem('token');
       if (!token) {
@@ -48,7 +50,7 @@
         return;
       }
 
-      fetch('https://3b1vkr9w-3000.inc1.devtunnels.ms/events', {
+      fetch(`${config.BASE_URL}/events`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -114,7 +116,7 @@
         btn.disabled = true;
         const token = localStorage.getItem("token");
         try {
-          let res = await fetch(`https://3b1vkr9w-3000.inc1.devtunnels.ms/events/${id}/rsvp`, {
+          let res = await fetch(`${config.BASE_URL}/events/${id}/rsvp`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

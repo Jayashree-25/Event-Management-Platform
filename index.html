@@ -368,7 +368,7 @@
                     return response.json();
                 })
                 .then(data => {
-                    const events = data.events;
+                    const events = data.events.slice(0,3);
                     const container = document.getElementById('allEventsContainer');
 
                     events.forEach(event => {

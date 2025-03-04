@@ -13,12 +13,10 @@
         .intro-screen {
             animation: fadeInScale 1.5s ease-in-out;
         }
-
         /* Fade-out + Slide-up */
         .fade-out {
             animation: fadeOutSlideUp 1s ease-out forwards;
         }
-
         @keyframes fadeInScale {
             from {
                 opacity: 0;
@@ -30,7 +28,6 @@
                 transform: scale(1);
             }
         }
-
         @keyframes fadeOutSlideUp {
             from {
                 opacity: 1;
@@ -42,14 +39,12 @@
                 transform: translateY(-50px);
             }
         }
-
         #profile-icon {
             position: fixed;
             top: 1rem;
             right: 1rem;
             z-index: 100;
         }
-
         #section {
             margin-top: 40px;
         }
@@ -57,8 +52,6 @@
 </head>
 
 <body class="bg-gray-50 min-h-screen">
-
-
 
     <!-- Cool Animated Intro Screen -->
     <div id="intro-screen"
@@ -74,6 +67,7 @@
             <img src="https://img.freepik.com/premium-vector/avatar-profile-icon-flat-style-female-user-profile-vector-illustration-isolated-background-women-profile-sign-business-concept_157943-38866.jpg?semt=ais_hybrid"
                 alt="Profile Icon" class="w-10 h-10 rounded-full shadow-md">
         </div>
+
         <!-- 🌟 Header with Banner & Text -->
         <div class="relative w-full h-48">
             <img class="w-full h-full object-cover"
@@ -87,7 +81,6 @@
                 <p class="text-lg mt-2">Explore and register for events happening near you!</p>
             </div>
         </div>
-
 
         <!-- Search Bar -->
         <div class="flex justify-center mt-6">
@@ -103,243 +96,234 @@
         <div class="container mx-auto mt-10 px-6">
             <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">NEW EVENTS</h2>
             <!-- Event Cards Container -->
-            <div id="allEventsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+            <div id="allEventsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 justify-center mx-auto"></div>
+        </div>
+        <!-- View All Events Button -->
+        <div class="flex justify-center mt-8">
+            <a href="all-events.html"
+                class="bg-[#3497A1] text-white px-6 py-3 rounded-lg text-lg font-semibold transition hover:bg-[#2E8593]">
+                View All Events
+            </a>
+        </div>
+    </div>
+
+    <div class="container mx-auto mt-10 px-6">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Why To Choose Our Platform?</h2>
+        <div class="flex flex-nowrap justify-center gap-6 px-6 py-8">
+
+            <!-- Testimonial Card 1 -->
+            <figure
+                class="md:w-[40%] w-full flex flex-col items-center justify-center p-8 text-center bg-gray-100 border border-gray-300 rounded-lg shadow-md">
+                <blockquote class="max-w-2xl mx-auto mb-4 text-gray-700">
+                    <h3 class="text-lg font-semibold text-gray-900"> User-Friendly Interface</h3>
+                    <p class="my-4">With an intuitive and easy-to-navigate UI, both beginners and experienced users
+                        can register, track schedules, and participate without hassle.</p>
+                </blockquote>
+            </figure>
+            <!-- Testimonial Card 2 -->
+            <figure
+                class="md:w-[40%] w-full flex flex-col items-center justify-center p-8 text-center bg-gray-100 border border-gray-300 rounded-lg shadow-md">
+                <blockquote class="max-w-2xl mx-auto mb-4 text-gray-700">
+                    <h4 class="text-lg font-semibold text-gray-900">Real-Time Updates & Notifications
+                    </h4>
+                    <p class="my-4">Stay informed with instant updates on event schedules, reminders, and
+                        last-minute changes via push notifications and email alerts.</p>
+                </blockquote>
+            </figure>
+            <!-- Testimonial Card 3 -->
+            <figure
+                class="md:w-[40%] w-full flex flex-col items-center justify-center p-8 text-center bg-gray-100 border border-gray-300 rounded-lg shadow-md">
+                <blockquote class="max-w-2xl mx-auto mb-4 text-gray-700">
+                    <h4 class="text-lg font-semibold text-gray-900">Collaboration & Networking
+                    </h4>
+                    <p class="my-4">The platform enables participants to form teams, interact with mentors, and
+                        network with industry professionals, fostering a collaborative coding environment.</p>
+                </blockquote>
+            </figure>
+            <!-- Testimonial Card 4 -->
+            <figure
+                class="md:w-[40%] w-full flex flex-col items-center justify-center p-8 text-center bg-gray-100 border border-gray-300 rounded-lg shadow-md">
+                <blockquote class="max-w-2xl mx-auto mb-4 text-gray-700">
+                    <h4 class="text-lg font-semibold text-gray-900">Customizable & Scalable
+                    </h4>
+                    <p class="my-4">Whether it’s a small group coding session or a large-scale hackathon, our
+                        platform scales effortlessly to accommodate any event size.
+                    </p>
+                </blockquote>
+            </figure>
+            <!-- Testimonial Card 5 -->
+            <figure
+                class="md:w-[40%] w-full flex flex-col items-center justify-center p-8 text-center bg-gray-100 border border-gray-300 rounded-lg shadow-md">
+                <blockquote class="max-w-2xl mx-auto mb-4 text-gray-700">
+                    <h4 class="text-lg font-semibold text-gray-900">Customizable & Scalable
+                    </h4>
+                    <p class="my-4">Whether it’s a small group coding session or a large-scale hackathon, our
+                        platform scales effortlessly to accommodate any event size.
+                    </p>
+                </blockquote>
+            </figure>
+        </div>
+
+        <!-- user says -->
+        <div class="container mx-auto mt-10 px-5">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">What Our Users Say</h2>
+            <div class="flex flex-nowrap justify-center gap-6">
+
+                <!-- User Card 1 -->
+                <div
+                    class="flex flex-col w-80 p-6 space-y-6 overflow-hidden rounded-lg shadow-md bg-gray-50 text-gray-800">
+                    <div class="flex space-x-4">
+                        <img alt="" src="https://th.bing.com/th/id/OIP.2GFZvIJMAntjix0lUrvxVAHaHZ?rs=1&pid=ImgDetMain"
+                            class="object-cover w-12 h-12 rounded-full shadow">
+                        <div class="flex flex-col space-y-1">
+                            <a href="#" class="text-sm font-semibold">Ananya Gupta</a>
+                            <span class="text-xs text-gray-600">4 hours ago</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600">The platform made organizing our annual conference a breeze.
+                        The interface is intuitive and the support team was exceptional.</p>
+                </div>
+                <!-- User Card 2 -->
+                <div
+                    class="flex flex-col w-80 p-6 space-y-6 overflow-hidden rounded-lg shadow-md bg-gray-50 text-gray-800">
+                    <div class="flex space-x-4">
+                        <img alt=""
+                            src="https://image.shutterstock.com/image-vector/letter-s-black-flower-letters-260nw-1506393911.jpg"
+                            class="object-cover w-12 h-12 rounded-full shadow">
+                        <div class="flex flex-col space-y-1">
+                            <a href="#" class="text-sm font-semibold">Sarah Roy</a>
+                            <span class="text-xs text-gray-600">2 days ago</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600">The best event platform! Easy to use and saves so much time for
+                        planning.</p>
+                </div>
+                <!-- User Card 3 -->
+                <div
+                    class="flex flex-col w-80 p-6 space-y-6 overflow-hidden rounded-lg shadow-md bg-gray-50 text-gray-800">
+                    <div class="flex space-x-4">
+                        <img alt="" src="https://th.bing.com/th/id/OIP.M5nHIW-EmZWcOW-z0_PgTQHaHa?rs=1&pid=ImgDetMain"
+                            class="object-cover w-12 h-12 rounded-full shadow">
+                        <div class="flex flex-col space-y-1">
+                            <a href="#" class="text-sm font-semibold">Arun Mohanty</a>
+                            <span class="text-xs text-gray-600">1 week ago</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600">The UI is fantastic and very easy to navigate. Great for
+                        finding events near me.</p>
+                </div>
+                <!-- User Card 4 -->
+                <div
+                    class="flex flex-col w-80 p-6 space-y-6 overflow-hidden rounded-lg shadow-md bg-gray-50 text-gray-800">
+                    <div class="flex space-x-4">
+                        <img alt=""
+                            src="https://is1-ssl.mzstatic.com/image/thumb/Purple125/v4/95/29/9f/95299f2f-b3c8-f6ed-846d-e2080eb36e22/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/246x0w.webp"
+                            class="object-cover w-12 h-12 rounded-full shadow">
+                        <div class="flex flex-col space-y-1">
+                            <a href="#" class="text-sm font-semibold">Rajesh Kumar</a>
+                            <span class="text-xs text-gray-600">3 days ago</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600">I highly recommend this platform for any event organizer!</p>
+                </div>
             </div>
-            <!-- View All Events Button -->
-            <div class="flex justify-center mt-8">
-                <a href="all-events.html"
-                    class="bg-[#3497A1] text-white px-6 py-3 rounded-lg text-lg font-semibold transition hover:bg-[#2E8593]">
-                    View All Events
+        </div>
+    </div>
+
+    <!-- Sign up -->
+    <section id="section" class="py-6 dark:bg-gray-200 dark:text-gray-900">
+        <div
+            class="container mx-auto flex flex-col justify-center p-4 space-y-8 md:p-10 lg:space-y-0 lg:space-x-12 lg:justify-between lg:flex-row">
+            <div class="flex flex-col space-y-4 text-center lg:text-left">
+                <h1 class="text-5xl font-bold leading-none">Stay in the loop</h1>
+                <p class="text-lg">Don't miss out on the latest events, challenges, and exclusive opportunities!
+                    Sign up now to stay updated. Be the first to register, receive important announcements, and
+                    connect with fellow members.</p>
+            </div>
+            <div class="flex items-center justify-center self-center shadow-md lg:justify-end">
+                <button type="button" onclick="window.location.href='signupPage.html'"
+                    class="px-8 py-1 font-semibold rounded-lg dark:bg-[#3497A1] dark:text-gray-50 hover:bg-[#26737D] transition-all">
+                    Sign Up
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="px-4 divide-y dark:bg-gray-100 dark:text-gray-800">
+        <div class="container flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
+            <div class="lg:w-1/3">
+                <a rel="noopener noreferrer" href="#" class="flex justify-center space-x-3 lg:justify-start">
+                    <div class="flex items-center justify-center w-12 h-12 rounded-full dark:bg-violet-600">
+                        <img src="logo.jpeg" alt="logo">
+                    </div>
+                    <span class="self-center text-2xl font-semibold">EventFlow</span>
                 </a>
             </div>
-        </div>
-
-
-        <div class="container mx-auto mt-10 px-6">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Why To Choose Our Platform?</h2>
-
-            <div class="flex flex-nowrap justify-center gap-6 px-6 py-8">
-                <!-- Testimonial Card 1 -->
-                <figure
-                    class="md:w-[40%] w-full flex flex-col items-center justify-center p-8 text-center bg-gray-100 border border-gray-300 rounded-lg shadow-md">
-                    <blockquote class="max-w-2xl mx-auto mb-4 text-gray-700">
-                        <h3 class="text-lg font-semibold text-gray-900"> User-Friendly Interface</h3>
-                        <p class="my-4">With an intuitive and easy-to-navigate UI, both beginners and experienced users
-                            can register, track schedules, and participate without hassle.</p>
-                    </blockquote>
-                </figure>
-
-                <!-- Testimonial Card 2 -->
-                <figure
-                    class="md:w-[40%] w-full flex flex-col items-center justify-center p-8 text-center bg-gray-100 border border-gray-300 rounded-lg shadow-md">
-                    <blockquote class="max-w-2xl mx-auto mb-4 text-gray-700">
-                        <h4 class="text-lg font-semibold text-gray-900">Real-Time Updates & Notifications
-                        </h4>
-                        <p class="my-4">Stay informed with instant updates on event schedules, reminders, and
-                            last-minute changes via push notifications and email alerts.</p>
-                    </blockquote>
-                </figure>
-                <!-- Testimonial Card 3 -->
-                <figure
-                    class="md:w-[40%] w-full flex flex-col items-center justify-center p-8 text-center bg-gray-100 border border-gray-300 rounded-lg shadow-md">
-                    <blockquote class="max-w-2xl mx-auto mb-4 text-gray-700">
-                        <h4 class="text-lg font-semibold text-gray-900">Collaboration & Networking
-                        </h4>
-                        <p class="my-4">The platform enables participants to form teams, interact with mentors, and
-                            network with industry professionals, fostering a collaborative coding environment.</p>
-                    </blockquote>
-                </figure>
-
-                <!-- Testimonial Card 4 -->
-                <figure
-                    class="md:w-[40%] w-full flex flex-col items-center justify-center p-8 text-center bg-gray-100 border border-gray-300 rounded-lg shadow-md">
-                    <blockquote class="max-w-2xl mx-auto mb-4 text-gray-700">
-                        <h4 class="text-lg font-semibold text-gray-900">Customizable & Scalable
-                        </h4>
-                        <p class="my-4">Whether it’s a small group coding session or a large-scale hackathon, our
-                            platform scales effortlessly to accommodate any event size.
-                        </p>
-                    </blockquote>
-                </figure>
-
-                <!-- Testimonial Card 5 -->
-                <figure
-                    class="md:w-[40%] w-full flex flex-col items-center justify-center p-8 text-center bg-gray-100 border border-gray-300 rounded-lg shadow-md">
-                    <blockquote class="max-w-2xl mx-auto mb-4 text-gray-700">
-                        <h4 class="text-lg font-semibold text-gray-900">Customizable & Scalable
-                        </h4>
-                        <p class="my-4">Whether it’s a small group coding session or a large-scale hackathon, our
-                            platform scales effortlessly to accommodate any event size.
-                        </p>
-                    </blockquote>
-                </figure>
-            </div>
-
-            <!-- user says -->
-            <div class="container mx-auto mt-10 px-5">
-                <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">What Our Users Say</h2>
-
-                <div class="flex flex-nowrap justify-center gap-6">
-                    <!-- User Card 1 -->
-                    <div
-                        class="flex flex-col w-80 p-6 space-y-6 overflow-hidden rounded-lg shadow-md bg-gray-50 text-gray-800">
-                        <div class="flex space-x-4">
-                            <img alt=""
-                                src="https://th.bing.com/th/id/OIP.2GFZvIJMAntjix0lUrvxVAHaHZ?rs=1&pid=ImgDetMain"
-                                class="object-cover w-12 h-12 rounded-full shadow">
-                            <div class="flex flex-col space-y-1">
-                                <a href="#" class="text-sm font-semibold">Ananya Gupta</a>
-                                <span class="text-xs text-gray-600">4 hours ago</span>
-                            </div>
-                        </div>
-                        <p class="text-sm text-gray-600">The platform made organizing our annual conference a breeze.
-                            The interface is intuitive and the support team was exceptional.</p>
-                    </div>
-
-                    <!-- User Card 2 -->
-                    <div
-                        class="flex flex-col w-80 p-6 space-y-6 overflow-hidden rounded-lg shadow-md bg-gray-50 text-gray-800">
-                        <div class="flex space-x-4">
-                            <img alt=""
-                                src="https://image.shutterstock.com/image-vector/letter-s-black-flower-letters-260nw-1506393911.jpg"
-                                class="object-cover w-12 h-12 rounded-full shadow">
-                            <div class="flex flex-col space-y-1">
-                                <a href="#" class="text-sm font-semibold">Sarah Roy</a>
-                                <span class="text-xs text-gray-600">2 days ago</span>
-                            </div>
-                        </div>
-                        <p class="text-sm text-gray-600">The best event platform! Easy to use and saves so much time for
-                            planning.</p>
-                    </div>
-
-                    <!-- User Card 3 -->
-                    <div
-                        class="flex flex-col w-80 p-6 space-y-6 overflow-hidden rounded-lg shadow-md bg-gray-50 text-gray-800">
-                        <div class="flex space-x-4">
-                            <img alt=""
-                                src="https://th.bing.com/th/id/OIP.M5nHIW-EmZWcOW-z0_PgTQHaHa?rs=1&pid=ImgDetMain"
-                                class="object-cover w-12 h-12 rounded-full shadow">
-                            <div class="flex flex-col space-y-1">
-                                <a href="#" class="text-sm font-semibold">Arun Mohanty</a>
-                                <span class="text-xs text-gray-600">1 week ago</span>
-                            </div>
-                        </div>
-                        <p class="text-sm text-gray-600">The UI is fantastic and very easy to navigate. Great for
-                            finding events near me.</p>
-                    </div>
-
-                    <!-- User Card 4 -->
-                    <div
-                        class="flex flex-col w-80 p-6 space-y-6 overflow-hidden rounded-lg shadow-md bg-gray-50 text-gray-800">
-                        <div class="flex space-x-4">
-                            <img alt=""
-                                src="https://is1-ssl.mzstatic.com/image/thumb/Purple125/v4/95/29/9f/95299f2f-b3c8-f6ed-846d-e2080eb36e22/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/246x0w.webp"
-                                class="object-cover w-12 h-12 rounded-full shadow">
-                            <div class="flex flex-col space-y-1">
-                                <a href="#" class="text-sm font-semibold">Rajesh Kumar</a>
-                                <span class="text-xs text-gray-600">3 days ago</span>
-                            </div>
-                        </div>
-                        <p class="text-sm text-gray-600">I highly recommend this platform for any event organizer!</p>
+            <div class="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
+                <div class="space-y-3">
+                    <h3 class="tracking-wide uppercase dark:text-gray-900">Product</h3>
+                    <ul class="space-y-1">
+                        <li>
+                            <a rel="noopener noreferrer" href="#">Features</a>
+                        </li>
+                        <li>
+                            <a rel="noopener noreferrer" href="#">Integrations</a>
+                        </li>
+                        <li>
+                            <a rel="noopener noreferrer" href="#">Pricing</a>
+                        </li>
+                        <li>
+                            <a rel="noopener noreferrer" href="#">FAQ</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="space-y-3">
+                    <h3 class="tracking-wide uppercase dark:text-gray-900">Company</h3>
+                    <ul class="space-y-1">
+                        <li>
+                            <a rel="noopener noreferrer" href="#">Privacy</a>
+                        </li>
+                        <li>
+                            <a rel="noopener noreferrer" href="#">Terms of Service</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="space-y-3">
+                    <h3 class="uppercase dark:text-gray-900">Developers</h3>
+                    <ul class="space-y-1">
+                        <li>
+                            <a rel="noopener noreferrer" href="#">Public API</a>
+                        </li>
+                        <li>
+                            <a rel="noopener noreferrer" href="#">Documentation</a>
+                        </li>
+                        <li>
+                            <a rel="noopener noreferrer" href="#">Guides</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="space-y-3">
+                    <div class="uppercase dark:text-gray-900 font-semibold">Social Media</div>
+                    <div class="flex space-x-2">
+                        <a href="https://www.facebook.com" title="Facebook" target="_blank">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
+                                alt="Facebook" class="w-8 h-8 hover:opacity-75 transition duration-200">
+                        </a>
+                        <a href="https://www.twitter.com" title="Twitter" target="_blank">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Logo_of_Twitter.svg/512px-Logo_of_Twitter.svg.png?20220821125553"
+                                alt="Twitter" class="w-8 h-8 hover:opacity-75 transition duration-200">
+                        </a>
+                        <a href="https://www.instagram.com" title="Instagram" target="_blank">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
+                                alt="Instagram" class="w-8 h-8 hover:opacity-75 transition duration-200">
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Sign up -->
-        <section id="section" class="py-6 dark:bg-gray-200 dark:text-gray-900">
-            <div
-                class="container mx-auto flex flex-col justify-center p-4 space-y-8 md:p-10 lg:space-y-0 lg:space-x-12 lg:justify-between lg:flex-row">
-                <div class="flex flex-col space-y-4 text-center lg:text-left">
-                    <h1 class="text-5xl font-bold leading-none">Stay in the loop</h1>
-                    <p class="text-lg">Don't miss out on the latest events, challenges, and exclusive opportunities!
-                        Sign up now to stay updated. Be the first to register, receive important announcements, and
-                        connect with fellow members.</p>
-                </div>
-                <div class="flex items-center justify-center self-center shadow-md lg:justify-end">
-                    <button type="button" onclick="window.location.href='signupPage.html'"
-                        class="px-8 py-1 font-semibold rounded-lg dark:bg-[#3497A1] dark:text-gray-50 hover:bg-[#26737D] transition-all">
-                        Sign Up
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="px-4 divide-y dark:bg-gray-100 dark:text-gray-800">
-            <div class="container flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
-                <div class="lg:w-1/3">
-                    <a rel="noopener noreferrer" href="#" class="flex justify-center space-x-3 lg:justify-start">
-                        <div class="flex items-center justify-center w-12 h-12 rounded-full dark:bg-violet-600">
-                            <img src="logo.jpeg" alt="logo">
-                        </div>
-                        <span class="self-center text-2xl font-semibold">EventFlow</span>
-                    </a>
-                </div>
-                <div class="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
-                    <div class="space-y-3">
-                        <h3 class="tracking-wide uppercase dark:text-gray-900">Product</h3>
-                        <ul class="space-y-1">
-                            <li>
-                                <a rel="noopener noreferrer" href="#">Features</a>
-                            </li>
-                            <li>
-                                <a rel="noopener noreferrer" href="#">Integrations</a>
-                            </li>
-                            <li>
-                                <a rel="noopener noreferrer" href="#">Pricing</a>
-                            </li>
-                            <li>
-                                <a rel="noopener noreferrer" href="#">FAQ</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="space-y-3">
-                        <h3 class="tracking-wide uppercase dark:text-gray-900">Company</h3>
-                        <ul class="space-y-1">
-                            <li>
-                                <a rel="noopener noreferrer" href="#">Privacy</a>
-                            </li>
-                            <li>
-                                <a rel="noopener noreferrer" href="#">Terms of Service</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="space-y-3">
-                        <h3 class="uppercase dark:text-gray-900">Developers</h3>
-                        <ul class="space-y-1">
-                            <li>
-                                <a rel="noopener noreferrer" href="#">Public API</a>
-                            </li>
-                            <li>
-                                <a rel="noopener noreferrer" href="#">Documentation</a>
-                            </li>
-                            <li>
-                                <a rel="noopener noreferrer" href="#">Guides</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="space-y-3">
-                        <div class="uppercase dark:text-gray-900 font-semibold">Social Media</div>
-                        <div class="flex space-x-2">
-                            <a href="https://www.facebook.com" title="Facebook" target="_blank">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
-                                    alt="Facebook" class="w-8 h-8 hover:opacity-75 transition duration-200">
-                            </a>
-                            <a href="https://www.twitter.com" title="Twitter" target="_blank">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Logo_of_Twitter.svg/512px-Logo_of_Twitter.svg.png?20220821125553"
-                                    alt="Twitter" class="w-8 h-8 hover:opacity-75 transition duration-200">
-                            </a>
-                            <a href="https://www.instagram.com" title="Instagram" target="_blank">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
-                                    alt="Instagram" class="w-8 h-8 hover:opacity-75 transition duration-200">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="py-6 text-sm text-center dark:text-gray-600">© 1968 Company Co. All rights reserved</div>
-        </footer>
+        <div class="py-6 text-sm text-center dark:text-gray-600">© 1968 Company Co. All rights reserved</div>
+    </footer>
 
     </div>
     <script src="script.js"></script>
@@ -368,7 +352,7 @@
                     return response.json();
                 })
                 .then(data => {
-                    const events = data.events.slice(0,3);
+                    const events = data.events.slice(0, 3);
                     const container = document.getElementById('allEventsContainer');
 
                     events.forEach(event => {
@@ -448,9 +432,7 @@
                 }
             }
         });
-
     </script>
-
+    
 </body>
-
 </html>

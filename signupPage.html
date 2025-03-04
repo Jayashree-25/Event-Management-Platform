@@ -127,45 +127,6 @@
     });
   </script>  
 
-  <!-- <script type="module">
-    import config from './config.js';
-    // Function to Register User
-    const registerUser = async (event) => {
-      event.preventDefault(); // Prevent Form Reload
-
-      const name = document.getElementById("fullName").value;
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-      const url = `${config.BASE_URL}/api/auth/register`;
-      console.log(url);
-      try {
-        const res = await fetch(url, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            name: name,
-            email: email,
-            password: password
-          })
-        });
-
-        if (!res.ok) {
-          throw new Error("❌ Registration failed. Please check your details.");
-        }
-
-        const data = await res.json();
-        console.log(data);
-
-        alert("✅ Registration Successful!");
-        window.location.href = 'loginPage.html'; // Redirect to Login Page
-
-      } catch (error) {
-        console.error(error.message);
-        alert(error.message);
-      }
-    }; -->
   </script>
 </body>
 
